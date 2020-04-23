@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.sequence {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+}
+
+.kick-track, .snare-track, .hihat-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 70%;
+  margin: 2.5rem 0 0 0;
+}
+
+.kick-pad, .snare-pad, .hihat-pad {
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.kick-pad {
+  background: rgba(160, 211, 224, .5);
+}
+.snare-pad {
+  background: rgba(224, 160, 208, .5);
+}
+.hihat-pad {
+  background: rgba(224, 194, 160, .5);
+}
+
+.kick-pad:hover, .kick-pad.active {
+  background: rgb(59, 197, 231);
+}
+.snare-pad:hover, .snare-pad.active {
+  background: rgb(218, 58, 178);
+}
+.hihat-pad:hover, .hihat-pad.active {
+  background: rgb(241, 158, 64);
+}
+
+.pad {
+  transition: all .5s ease;
+}
+
+.kick, .snare, .hihat {
+  display: flex;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.controls button {
+  padding: 1rem;
+  background: rgb(88, 88, 88);
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 5rem;
+  border: none;
+
+  transition: all .5s ease;
+}
+.controls button:focus {
+  outline: none;
+}
+.controls button:hover, .controls button.active {
+  background: rgba(88, 88, 88, .5);
+}
+
+.play-btn {
+  background: rgb(88, 88, 88);
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5rem 0 0 0;
+}
+.play-btn:focus {
+  outline: none;
+}
+
+
+#snare-select, #kick-select, #hihat-select {
+  padding: 1rem;
+  margin-left: 2rem;
+
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 5px;
+
+  transition: all .2s ease;
+}
+
+#snare-select:active, #snare-select:hover {
+  border: 2px solid rgb(218, 58, 178);
+}
+#kick-select:active, #kick-select:hover {
+  border: 2px solid rgb(59, 197, 231);
+}
+#hihat-select:active, #hihat-select:hover {
+  border: 2px solid rgb(241, 158, 64);
+}
+
+#kick-select:focus, #snare-select:focus, #hihat-select:focus {
+  outline: none;
+}
