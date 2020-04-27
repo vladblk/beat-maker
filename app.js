@@ -13,6 +13,7 @@ class DrumKit {
     this.selects = document.querySelectorAll('select');
 
     this.playBtn = document.querySelector('.play-btn');
+    this.clearBtn = document.querySelector('.clear-btn');
 
     this.muteBtns = document.querySelectorAll('.mute');
 
@@ -166,6 +167,15 @@ class DrumKit {
       this.start();
     }
   }
+
+  clearPads(){
+    // clear class of active from pads
+    this.pads.forEach( (pad) => {
+      if(pad.classList.contains('active')){
+        pad.classList.remove('active');
+      }
+    });
+  }
 }
 
 
@@ -209,4 +219,10 @@ drumKit.tempoSlider.addEventListener('input', (e) => {
 
 drumKit.tempoSlider.addEventListener('change', (e) => {
   drumKit.updateTempo(e);
+});
+
+
+// reset button event listener
+drumKit.clearBtn.addEventListener('click', () => {
+  drumKit.clearPads();
 });
