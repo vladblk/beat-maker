@@ -92,7 +92,7 @@ i, svg {
   background: rgba(88, 88, 88, .5);
 }
 
-.play-btn {
+.play-btn, .clear-btn {
   background: rgb(88, 88, 88);
   padding: 1rem 2rem;
   font-size: 1.5rem;
@@ -100,10 +100,13 @@ i, svg {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 5rem 0 0 0;
+  margin: 5rem 0 0;
 }
-.play-btn:focus {
+.play-btn:focus, .clear-btn:focus {
   outline: none;
+}
+.play-btn {
+  margin-right: 1rem;
 }
 
 
