@@ -16,6 +16,8 @@ class DrumKit {
 
     this.muteBtns = document.querySelectorAll('.mute');
 
+    this.tempoSlider = document.querySelector('.tempo-slider');
+
     this.isPlaying = null;
 
     this.index = 0;
@@ -37,8 +39,6 @@ class DrumKit {
     // [div.pad.kick-pad.b2, div.pad.snare-pad.b2, div.pad.hihat-pad.b2]
     // etc..
     const activePads = document.querySelectorAll(`.b${step}`);
-    console.log(activePads);
-    
     
     activePads.forEach( (pad) => {
       // animate each pad while looping through them
@@ -77,6 +77,9 @@ class DrumKit {
 
       // change the innerText of tht playBtn
       this.playBtn.innerText = 'Stop';
+
+      // add active class to play button if it's running
+      this.playBtn.classList.add('active');
     } else {
       // stop the setInterval timer
       clearInterval(this.isPlaying);
@@ -85,6 +88,9 @@ class DrumKit {
       
       // change the innerText of the playBtn
       this.playBtn.innerText = 'Start';
+
+      // remove active class from play button if it's stopped
+      this.playBtn.classList.remove('active');
     }
   }
 
@@ -139,6 +145,27 @@ class DrumKit {
     }
   }
 
+  changeTempo(e){
+    const tempoValue = document.querySelector('.tempo-value');
+
+    // show the selected value on UI
+    tempoValue.innerText = e.target.value;
+  }
+
+  updateTempo(e){
+    // stop the interval timer
+    clearInterval(this.isPlaying);
+    // put isPlaying back to null - see start() method
+    this.isPlaying = null;
+
+    // update the bpm with the value from the slider
+    this.bpm = e.target.value;
+
+    // change the tempo only when button is active (it's playing)
+    if(this.playBtn.classList.contains('active')){
+      this.start();
+    }
+  }
 }
 
 
@@ -172,4 +199,14 @@ drumKit.muteBtns.forEach ( (btn) => {
   btn.addEventListener('click', (e) => {
     drumKit.mute(e);
   });
+});
+
+
+// tempo slider event listener
+drumKit.tempoSlider.addEventListener('input', (e) => {
+  drumKit.changeTempo(e);
+});
+
+drumKit.tempoSlider.addEventListener('change', (e) => {
+  drumKit.updateTempo(e);
 });
