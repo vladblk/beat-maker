@@ -8,6 +8,10 @@ body {
   font-family: sans-serif;
 }
 
+i, svg {
+  pointer-events: none;
+}
+
 .sequence {
   display: flex;
   flex-direction: column;
@@ -126,4 +130,16 @@ body {
 
 #kick-select:focus, #snare-select:focus, #hihat-select:focus {
   outline: none;
+}
+
+
+
+@keyframes playTrack {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.2);
+  }
 }
