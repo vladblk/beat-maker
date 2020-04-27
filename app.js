@@ -7,6 +7,8 @@ class DrumKit {
 
     this.playBtn = document.querySelector('.play-btn');
 
+    this.isPlaying = null;
+
     this.index = 0;
     this.bpm = 150;
   }
@@ -35,7 +37,7 @@ class DrumKit {
       
       // check if pads have class of active
       if(pad.classList.contains('active')){
-        // check each sound
+        // play each sound
         if(pad.classList.contains('kick-pad')){
           this.kickAudio.currentTime = 0;
           this.kickAudio.play();
@@ -55,10 +57,35 @@ class DrumKit {
 
   start(){
     const interval = (60 / this.bpm) * 1000;
-    setInterval( () => {
-      this.repeat();
-    }, interval);
+
+    // NULL - falsy
+    // Check if this.isPlaying is not false (which is true because NULL is falsy)
+    if(!this.isPlaying){
+      // asign the returned ID from setInterval
+      this.isPlaying = setInterval( () => {
+        this.repeat();
+      }, interval);
+
+      // change the innerText of tht playBtn
+      this.playBtn.innerText = 'Stop';
+    } else {
+      // stop the setInterval timer
+      clearInterval(this.isPlaying);
+      // set this.isPlaying back to null;
+      this.isPlaying = null;
+      
+      // change the innerText of the playBtn
+      this.playBtn.innerText = 'Start';
+    }
   }
+
+  // updateBtn() {
+  //   if(this.isPlaying !== null){
+  //     this.playBtn.innerText = 'Play';
+  //   } else {
+  //     this.playBtn.innerText = 'Stop';
+  //   }
+  // }
 }
 
 
@@ -77,5 +104,6 @@ drumKit.pads.forEach( (pad) => {
 
 // we need to call drumKit.start() inside a callback function / arrow function, so the "this" keyword points to the DrumKit class. If not, the "this" keyword will point to the "<button class="play-btn">Play</button>" that we add the event listener on.
 drumKit.playBtn.addEventListener('click', () => {
+  // drumKit.updateBtn();
   drumKit.start();
 });
