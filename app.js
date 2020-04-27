@@ -1,9 +1,16 @@
 class DrumKit {
   constructor(){
     this.pads = document.querySelectorAll('.pad');
+    
     this.kickAudio = document.querySelector('.kick-sound');
     this.snareAudio = document.querySelector('.snare-sound');
     this.hihatAudio = document.querySelector('.hihat-sound');
+
+    this.currentKick = document.querySelector('.kick-classic.wav');
+    this.currentSnare = document.querySelector('.snare-acoustic01.wav');
+    this.currentHihat = document.querySelector('.hihat-acoustic01.wav');
+
+    this.selects = document.querySelectorAll('select');
 
     this.playBtn = document.querySelector('.play-btn');
 
@@ -79,13 +86,29 @@ class DrumKit {
     }
   }
 
-  // updateBtn() {
-  //   if(this.isPlaying !== null){
-  //     this.playBtn.innerText = 'Play';
-  //   } else {
-  //     this.playBtn.innerText = 'Stop';
-  //   }
-  // }
+  changeSound(e){
+    // get the name of each select option for all 3 sounds
+    const selectionName = e.target.name;
+    // get the value of each select option for all 3 sounds
+    const selectionValue = e.target.value;
+
+    // for kick select option
+    if(selectionName === 'kick-select'){
+      // change the audio with the selected option value
+      this.kickAudio.src = selectionValue;
+      
+      // for snare select select option
+    } else if(selectionName === 'snare-select'){
+      // change the audio with the selected option value
+      this.snareAudio.src = selectionValue;
+
+      // for hihat select option
+    } else if(selectionName === 'hihat-select'){
+      // change the audio with the selected option value
+      this.hihatAudio.src = selectionValue;
+    }
+  }
+
 }
 
 
@@ -104,6 +127,12 @@ drumKit.pads.forEach( (pad) => {
 
 // we need to call drumKit.start() inside a callback function / arrow function, so the "this" keyword points to the DrumKit class. If not, the "this" keyword will point to the "<button class="play-btn">Play</button>" that we add the event listener on.
 drumKit.playBtn.addEventListener('click', () => {
-  // drumKit.updateBtn();
   drumKit.start();
 });
+
+// 'change' event listener for each select option
+drumKit.selects.forEach( (select) => {
+  select.addEventListener('change', (e) => {
+    drumKit.changeSound(e);
+  });
+})
