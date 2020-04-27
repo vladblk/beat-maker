@@ -41,9 +41,9 @@
     <!-- SNARE TRACK -->
     <div class="snare-track">
       <div class="controls">
-        <h1>snare</h1>
+        <h1>Snare</h1>
 
-        <button data-track="0" class="mute snare-volume">
+        <button data-track="1" class="mute snare-volume">
           <i class="fas fa-volume-mute"></i>
         </button>
         
@@ -69,9 +69,9 @@
     <!-- HIHAT TRACK -->
     <div class="hihat-track">
       <div class="controls">
-        <h1>hihat</h1>
+        <h1>Hihat</h1>
 
-        <button data-track="0" class="mute hihat-volume">
+        <button data-track="2" class="mute hihat-volume">
           <i class="fas fa-volume-mute"></i>
         </button>
         
@@ -97,6 +97,12 @@
 
 
     <button class="play-btn">Play</button>
+
+    <div class="tempo">
+      <input type="range" class="tempo-slider" max="300" min="20" value="150">
+      <p>Tempo: <span class="tempo-value">150</span></p>
+    </div>
+    
     <audio src="./allSounds/kick-classic.wav" class="kick-sound"></audio>
     <audio src="./allSounds/snare-acoustic01.wav" class="snare-sound"></audio>
     <audio src="./allSounds/hihat-acoustic01.wav" class="hihat-sound"></audio>
